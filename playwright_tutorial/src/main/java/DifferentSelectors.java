@@ -29,7 +29,7 @@ public class DifferentSelectors {
 
             page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions()
                             .setName("Submit"))
-                    .click().;
+                    .click();
 
 
         } catch (Exception e) {
