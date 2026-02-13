@@ -1,6 +1,8 @@
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.Playwright;
 
+import java.util.List;
+
 public class ShadowDom {
 
     public static void main(String[] args) {
@@ -13,8 +15,17 @@ public class ShadowDom {
 
             page.navigate("https://books-pwakit.appspot.com/");
 
+            // Shadow Dom
             page.locator("book-input-decorator #input").fill("Harry Porter ");
 
+            page.keyboard().press("Enter");
+
+            page.locator("div.title-container .title").nth(2).click();
+
+//            List<String> bookList = listOfbook.allTextContents();
+//
+//            for(String ele : bookList)
+//                System.out.println(ele);
 
 
 
