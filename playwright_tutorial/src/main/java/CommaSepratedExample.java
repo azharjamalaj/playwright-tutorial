@@ -1,5 +1,6 @@
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.AriaRole;
+import com.microsoft.playwright.options.WaitUntilState;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,16 +15,16 @@ public class CommaSepratedExample {
         Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
 
         Page page = browser.newPage();
-        page.navigate("https://www.orangehrm.com/en/book-a-free-demo");
+        page.navigate("https://www.orangehrm.com/en/book-a-free-demo",  new Page.NavigateOptions()
+                .setWaitUntil(WaitUntilState.LOAD));
         assertThat(page).hasTitle(Pattern.compile("OrangeHRM"));
 
         // Using Comma Separator
-        Locator loc = page.locator("a:has-text('Solutions'), a:has-text('Why OrangeHRM'), a:has-text('Resources'), a:has-text('Pricing')");
-
-        loc.waitFor();
-
-        // Validate any of the href is visible on the page
-        assertThat(loc).isVisible();
+//        Locator loc = page.locator("a:has-text('Contact Us'), a:has-text('Press Releases')");
+//        loc.scrollIntoViewIfNeeded();
+//        loc.first().waitFor();
+//
+//        loc.first().click();
 
         // Using OR operator
         Locator solutions = page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Solutions").setExact(true));

@@ -1,0 +1,2 @@
+public class RelativeCSS2 {
+}
